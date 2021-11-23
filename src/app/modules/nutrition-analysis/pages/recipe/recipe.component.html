@@ -1,0 +1,10 @@
+<div class="row">
+    <div class="col-12 d-flex align-items-center flex-column my-3">
+        <p class="header">Enter an ingredient list for what you are cooking, like <span class="example">"1 cup rice, 10 oz chickpeas"</span> , etc.
+            Enter each ingredient on a new line.</p>
+        <textarea placeholder="Enter an ingredient list..." (ngModelChange)="changeHandler($event)" [(ngModel)]="ingredients" rows="10" class="form-control recipe-input my-2">
+        </textarea>
+        <p *ngIf="userHasTyped&&!isValid">please enter valid ingredients like <span class="example">"1 cup rice, 10 oz chickpeas"</span></p>
+        <button [routerLink]="['/analysis']" [disabled]="!isValid" type="button" class="btn btn-primary">Analyse</button>
+    </div>
+</div>

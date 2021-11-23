@@ -1,0 +1,32 @@
+<div class="row">
+    <div *ngIf="activeRecipe" class="col-12 d-flex d-flex align-items-center flex-column py-3">
+        <table *ngIf="recipeIngredients.length>0&&!isLoading" class="table ingredients-table my-3">
+            <thead>
+            <tr>
+              <th scope="col">Qty</th>
+              <th scope="col">Unit</th>
+              <th scope="col">Food</th>
+              <th scope="col">Calories</th>
+              <th scope="col">Weight</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let ingredient of recipeIngredients; index as i">
+                <td>{{ingredient.quantity}}</td>
+                <td>{{ingredient.unit}}</td>
+                <td>{{ingredient.food}}</td>
+                <td>{{ingredient.calories | number: '1.0-1'}} {{ingredient.caloriesUnit}}</td>
+                <td>{{ingredient.weight | number: '1.0-1'}} gm</td>
+            </tr>
+            </tbody>
+        </table>
+        <button *ngIf="recipeIngredients.length>0&&!isLoading" type="button" class="btn btn-primary">Total Nutrition</button>
+        <app-loader *ngIf="isLoading"></app-loader>
+    </div>
+    <div *ngIf="!activeRecipe" class="col-12 d-flex d-flex align-items-center flex-column py-3">
+        <ngb-alert  [type]="'warning'" [dismissible]="false">
+            No active recipes found
+        </ngb-alert>
+        <button  [routerLink]="['/']" type="button" class="btn btn-primary">New Recipe</button>
+    </div>
+</div>

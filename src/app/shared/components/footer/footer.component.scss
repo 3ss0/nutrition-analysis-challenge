@@ -1,0 +1,13 @@
+@import "variables.scss";
+
+.footer {
+  height: 71px;
+  @extend %flex-align;
+  .actions {
+    @extend %flex-align;
+    justify-content: space-between;
+    width: inherit;
+    padding: 0 15px;
+    font-weight: 700;
+  }
+}
