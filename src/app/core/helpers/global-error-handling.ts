@@ -1,7 +1,6 @@
 import { ErrorHandler, Injectable, Injector } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LoggingService, ErrorService, ToastService } from '@core/utils';
-import { environment } from '@env';
 
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {

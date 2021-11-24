@@ -21,7 +21,7 @@ export class ToastService {
     this.remove(toast);
   }
   
-  remove(toast) {
+  private remove(toast) {
     setTimeout(()=>{
         this.toasts = this.toasts.filter(t => t !== toast);
     },toast.delay || 5000);    
