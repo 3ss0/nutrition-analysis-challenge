@@ -38,8 +38,7 @@ export class RecipeComponent implements OnInit {
 
   checkSingleIngredient(ingredient:  string) {
     // check Qty , unit and food
-    const [quantity,unit,food] = ingredient.split(' ');
-    console.log(quantity,unit,food);
+    const [quantity,unit,food] = ingredient.trim().split(' ');
     if(!quantity || !unit || !food ) {
       return false;
     }

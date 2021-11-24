@@ -1,0 +1,20 @@
+<table *ngIf="ingredients.length" class="table my-3">
+    <thead>
+        <tr>
+        <th scope="col">Qty</th>
+        <th scope="col">Unit</th>
+        <th scope="col">Food</th>
+        <th scope="col">Calories</th>
+        <th scope="col">Weight</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let ingredient of ingredients; index as i">
+        <td>{{ingredient.quantity}}</td>
+        <td>{{ingredient.unit}}</td>
+        <td>{{ingredient.food}}</td>
+        <td>{{ingredient.calories | number: '1.0-1'}} {{ingredient.caloriesUnit}}</td>
+        <td>{{ingredient.weight | number: '1.0-1'}} gm</td>
+    </tr>
+    </tbody>
+</table>

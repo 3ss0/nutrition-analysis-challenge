@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { IIngredient, IRecipe } from '@core/models';
+import { IIngredient, IRecipe , nutritionItems} from '@core/models';
 import { NutritionService } from '@core/services/nutrition.service';
 import { Subscription } from 'rxjs';
 import {ToastService} from '@core/utils';
@@ -12,7 +12,11 @@ export class IngredientsAnalysisComponent implements OnInit , OnDestroy {
   activeRecipe: Array<string>;
   subscriptions = new Subscription();
   recipeIngredients: IIngredient[] = [];
+  nutritionData: any = [];
   isLoading: boolean = false;
+  showInvalidIngredientsMessage: boolean;
+  totalNutritionCalories: number;
+  showTotal: boolean;
   constructor(
     private nutritionService: NutritionService,
     private toaster: ToastService,
@@ -53,11 +57,27 @@ export class IngredientsAnalysisComponent implements OnInit , OnDestroy {
           calories: ingredient.parsed[0].nutrients.ENERC_KCAL.quantity,
           caloriesUnit: ingredient.parsed[0].nutrients.ENERC_KCAL.unit
         });
+      }else {
+        this.showInvalidIngredientsMessage = true;
       }
     }
     this.recipeIngredients = parsedIngredients;
+    if(this.recipeIngredients.length > 0) {
+      this.totalNutritionCalories = response.calories;
+      this.nutritionData = nutritionItems.map((item)=>{
+        return {
+          name: item.label,
+          amount: response.totalNutrients[item.key].quantity,
+          unit: response.totalNutrients[item.key].unit,
+          percentage: response.totalDaily[item.key].quantity
+        }
+      });
+    }
   }
 
+  showTotalNutrition(){
+    this.showTotal = true;
+  }
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();

@@ -1,0 +1,16 @@
+<table *ngIf="data.length" class="table my-3">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">amount</th>
+      <th scope="col">% Daily Value*</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of data; index as i">
+        <td>{{item.name}}</td>
+        <td>{{item.amount | number: '1.0-1'}} {{item.unit}}</td>
+        <td>{{item.percentage | number: '1.0-0'}}%</td>
+    </tr>
+    </tbody>
+</table>
