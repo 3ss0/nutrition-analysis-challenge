@@ -8,7 +8,7 @@
     </thead>
     <tbody>
     <tr *ngFor="let item of data; index as i">
-        <td>{{item.name}}</td>
+        <td class="font-weight-bold">{{item.name}}</td>
         <td>{{item.amount | number: '1.0-1'}} {{item.unit}}</td>
         <td>{{item.percentage | number: '1.0-0'}}%</td>
     </tr>
